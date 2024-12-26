@@ -2921,7 +2921,7 @@ GameObject:
   - component: {fileID: 320213949}
   - component: {fileID: 320213950}
   m_Layer: 0
-  m_Name: DonutPortal
+  m_Name: BagelPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4052,7 +4052,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f1174aa2784874b60a6e85d5e971de92,
         type: 3}
       propertyPath: m_Name
-      value: DonutTorus
+      value: BagelTorus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11352,7 +11352,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90e17888143f6764ebef012db2b22cf8,
         type: 3}
       propertyPath: m_Name
-      value: DonutPortal
+      value: BagelPortal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24704,7 +24704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074520576}
   m_Layer: 0
-  m_Name: Donut
+  m_Name: Bagel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24719,7 +24719,7 @@ Transform:
   m_GameObject: {fileID: 2074520575}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
