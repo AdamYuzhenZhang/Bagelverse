@@ -2920,6 +2920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 320213949}
   - component: {fileID: 320213950}
+  - component: {fileID: 320213951}
   m_Layer: 0
   m_Name: BagelPortal
   m_TagString: Untagged
@@ -2951,7 +2952,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320213948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f35fb207eef21146ac707aa74c2221d, type: 3}
   m_Name: 
@@ -2961,6 +2962,22 @@ MonoBehaviour:
   reflectedHead: {fileID: 591513951}
   reflectedLeftHand: {fileID: 1882014775}
   reflectedRightHand: {fileID: 10514293}
+--- !u!114 &320213951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320213948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c48a9d08659df4e9caff3590de808d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigTracker: {fileID: 1362794509}
+  mirrorTransform: {fileID: 2074520576}
+  reflectedHead: {fileID: 591513951}
+  cubeSize: 0.02
 --- !u!1 &330322742
 GameObject:
   m_ObjectHideFlags: 0
@@ -16699,6 +16716,11 @@ MonoBehaviour:
   headAnchor: {fileID: 852138410}
   leftHandAnchor: {fileID: 1631518943}
   rightHandAnchor: {fileID: 487587063}
+  leftHand: {fileID: 1123872171}
+  rightHand: {fileID: 944610577}
+  leftHandSkeleton: {fileID: 1123872170}
+  rightHandSkeleton: {fileID: 944610576}
+  handBonesInitialized: 0
 --- !u!4 &1362794510
 Transform:
   m_ObjectHideFlags: 0
