@@ -9,8 +9,8 @@ public class RigMirrorDebug : MonoBehaviour
     [SerializeField] private Transform mirrorTransform;
 
     [SerializeField] private Transform reflectedHead;
-    //[SerializeField] private Transform reflectedLeftHand;
-    //[SerializeField] private Transform reflectedRightHand;
+    [SerializeField] private GameObject reflectedLeftHand;
+    [SerializeField] private GameObject reflectedRightHand;
     
     private Dictionary<OVRSkeleton.BoneId, GameObject> leftHandDebugCubes = new Dictionary<OVRSkeleton.BoneId, GameObject>();
     private Dictionary<OVRSkeleton.BoneId, GameObject> rightHandDebugCubes = new Dictionary<OVRSkeleton.BoneId, GameObject>();
@@ -23,13 +23,13 @@ public class RigMirrorDebug : MonoBehaviour
     {
         // Get transforms
         Transform headAnchor = rigTracker.headAnchor;
-        //Transform leftHandAnchor = rigTracker.leftHandAnchor;
-        //Transform rightHandAnchor = rigTracker.rightHandAnchor;
+        Transform leftHandAnchor = rigTracker.leftHandAnchor;
+        Transform rightHandAnchor = rigTracker.rightHandAnchor;
         
         // Calculate and assign mirrored transforms
         Reflect(headAnchor, reflectedHead);
-        //Reflect(leftHandAnchor, reflectedLeftHand);
-        //Reflect(rightHandAnchor, reflectedRightHand);
+        Reflect(leftHandAnchor, reflectedLeftHand.transform);
+        Reflect(rightHandAnchor, reflectedRightHand.transform);
 
         if (!handsInitialized && rigTracker.handBonesInitialized)
         {
@@ -48,21 +48,21 @@ public class RigMirrorDebug : MonoBehaviour
 
     private void InitHandsDebugger()
     {
-        DebugCubesCreator(rigTracker.leftHandBones, leftHandDebugCubes);
-        DebugCubesCreator(rigTracker.rightHandBones, rightHandDebugCubes);
+        DebugCubesCreator(rigTracker.leftHandBones, leftHandDebugCubes, reflectedLeftHand);
+        DebugCubesCreator(rigTracker.rightHandBones, rightHandDebugCubes, reflectedRightHand);
     }
 
     private void DebugCubesCreator(Dictionary<OVRSkeleton.BoneId, Transform> bones,
-        Dictionary<OVRSkeleton.BoneId, GameObject> cubes)
+        Dictionary<OVRSkeleton.BoneId, GameObject> cubes, GameObject parent)
     {
-        int layer = gameObject.layer;  // set the same layer
+        int layer = parent.layer;  // set the same layer
         foreach (var b in bones)
         {
             GameObject c = GameObject.CreatePrimitive(PrimitiveType.Cube);
             c.transform.localScale = Vector3.one * cubeSize;
             c.layer = layer;
             Reflect(b.Value, c.transform);
-            c.transform.parent = this.transform;
+            c.transform.parent = parent.transform;
             cubes[b.Key] = c;
         }
     }
