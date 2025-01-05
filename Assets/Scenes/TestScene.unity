@@ -682,6 +682,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5140505803332129341, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5436186698244639924, guid: c79823ae528885d4c8da03953abbfa0f,
         type: 3}
       propertyPath: m_Layer
@@ -756,6 +761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994587043458612694, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10149,6 +10159,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5140505803332129341, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5436186698244639924, guid: c79823ae528885d4c8da03953abbfa0f,
         type: 3}
       propertyPath: m_Layer
@@ -10223,6 +10238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994587043458612694, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -18633,7 +18653,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403130103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -24841,7 +24861,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946904941}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -26811,6 +26831,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BagelPortal
       objectReference: {fileID: 0}
+    - target: {fileID: 5140505803332129341, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6277286987414644792, guid: c79823ae528885d4c8da03953abbfa0f,
         type: 3}
       propertyPath: rigTracker
@@ -26864,6 +26889,11 @@ PrefabInstance:
     - target: {fileID: 6335984717008554720, guid: c79823ae528885d4c8da03953abbfa0f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994587043458612694, guid: c79823ae528885d4c8da03953abbfa0f,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
