@@ -19,6 +19,14 @@ public class RigMirrorDebug : MonoBehaviour
     
     public bool handsInitialized = false;
 
+    private Material mat;
+
+    private void Start()
+    {
+        mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        mat.SetColor("_BaseColor", Color.white);
+    }
+
     private void Update()
     {
         // Get transforms
@@ -61,6 +69,7 @@ public class RigMirrorDebug : MonoBehaviour
             GameObject c = GameObject.CreatePrimitive(PrimitiveType.Cube);
             c.transform.localScale = Vector3.one * cubeSize;
             c.layer = layer;
+            c.GetComponent<Renderer>().material = mat;
             Reflect(b.Value, c.transform);
             c.transform.parent = parent.transform;
             cubes[b.Key] = c;
