@@ -20475,10 +20475,35 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3800639334589868550, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1799010396184449909, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -990059940114347320, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
         type: 3}
       propertyPath: m_Name
       value: divingHelmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779979124374832920, guid: 75daf2f3f1f2a4d829c7b57aed799c21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

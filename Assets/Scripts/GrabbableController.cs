@@ -105,6 +105,21 @@ public class GrabbableController : MonoBehaviour
         return result;
     }
 
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (obj == null)
+            return;
+
+        // Set the layer of the current object
+        obj.layer = newLayer;
+
+        // Recursively set the layer of all children
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // get other gameobject
@@ -136,7 +151,8 @@ public class GrabbableController : MonoBehaviour
                     leftTargetHand = other.transform;
                     this.transform.parent = leftTargetHand;
                     layer = other.gameObject.layer;
-                    this.gameObject.layer = layer;
+                    //this.gameObject.layer = layer;
+                    SetLayerRecursively(this.gameObject, layer);
                 }
                 
             }
@@ -163,7 +179,8 @@ public class GrabbableController : MonoBehaviour
                     rightTargetHand = other.transform;
                     this.transform.parent = rightTargetHand;
                     layer = other.gameObject.layer;
-                    this.gameObject.layer = layer;
+                    //this.gameObject.layer = layer;
+                    SetLayerRecursively(this.gameObject, layer);
                 }
             }
         }
