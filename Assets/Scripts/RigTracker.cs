@@ -24,10 +24,11 @@ public class RigTracker : MonoBehaviour
     private bool rightBonesInit = false;
     public bool handBonesInitialized = false;
 
-    //public bool leftTracked = false;
-    //public bool rightTracked = false;
-    
-    
+    public bool leftPinching = false;
+    public bool rightPinching = false;
+
+    //public bool leftTracked;
+    //public bool rightTracked;
     public bool isLeftHandTracked()
     {
         return leftHand.IsTracked;
@@ -79,5 +80,9 @@ public class RigTracker : MonoBehaviour
             Debug.Log($"Left BoneID: {bone.Key}, Position: {bone.Value.position}, Rotation: {bone.Value.rotation}");
         }
         */
+        
+        // get pinching state
+        leftPinching = leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
+        rightPinching = rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
     }
 }
