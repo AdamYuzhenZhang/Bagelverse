@@ -25,7 +25,7 @@ public class BagelController : MonoBehaviour
         if (!state.isBoiled()) foreach (GameObject water in waters)
         {
             ObjectStateManager waterController = water.GetComponent<ObjectStateManager>();
-            if (render.bounds.Contains(water.transform.position) && waterController.isBoiled())
+            if (render.bounds.Intersects(water.GetComponent<Renderer>().bounds) && waterController.isBoiled())
             {
                 state.Boil();
                 state.UnBake();
@@ -34,7 +34,7 @@ public class BagelController : MonoBehaviour
 
         if (state.isBoiled())
         {
-            if (render.bounds.Contains(bakingTray.transform.position) && state.isBaked())
+            if (render.bounds.Intersects(bakingTray.GetComponent<Renderer>().bounds) && state.isBaked())
             {
                 gameObject.GetComponent<Renderer>().material = bakedMaterial;
             }

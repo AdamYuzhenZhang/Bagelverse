@@ -10,6 +10,7 @@ public class DoughController : MonoBehaviour
     public GameObject bakingTray;
     public GameObject rollingPin;
     public GameObject bagels;
+    public GameObject flour;
 
 
     // Start is called before the first frame update
@@ -29,10 +30,20 @@ public class DoughController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Contains(rollingPin.transform.position) && render.bounds.Contains(bakingTray.transform.position))
+        if (render.bounds.Intersects(rollingPin.GetComponent<Renderer>().bounds) && render.bounds.Intersects(bakingTray.GetComponent<Renderer>().bounds))
         {
             targetsCollided();
         }
+        if (transform.position.y < -10) // Respawns flour if dough falls.
+        {
+            gameObject.SetActive(false);
+            Instantiate(flour, new Vector3(-0.564999998f, 0.898000002f, 0.370999992f), Quaternion.identity);
+        }
+    }
+
+    public void SetFlour(GameObject newFlour)
+    {
+        flour = newFlour;
     }
 
 

@@ -34,7 +34,7 @@ public class PotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Contains(waterBottle.transform.position) && render.bounds.Contains(bagels.transform.position))
+        if (render.bounds.Intersects(waterBottle.GetComponent<Renderer>().bounds) && render.bounds.Intersects(bagels.GetComponent<Renderer>().bounds))
         {
             targetsCollided();
         }

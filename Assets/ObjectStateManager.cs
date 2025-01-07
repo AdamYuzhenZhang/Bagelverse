@@ -7,17 +7,26 @@ public class ObjectStateManager : MonoBehaviour
     private bool _isFilled;
     private bool _isBaked;
     private bool _isBoiled;
+    private Renderer _renderer;
+    public Material filledMaterial;
+    public Material emptyMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
-        _isFilled = false;
+        _isFilled = true;
         _isBaked = false;
         _isBoiled = false;
+        _renderer = GetComponent<Renderer>();
     }
 
     private string GetCurrentWorld()
     {
-        // TODO
+        GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
+        foreach (GameObject water in waters) { 
+            Renderer waterRender = water.GetComponent<Renderer>();
+            if (waterRender && _renderer && _renderer.bounds.Intersects(waterRender.bounds)) return "water"; 
+        }
         return "";
     }
 
@@ -26,13 +35,15 @@ public class ObjectStateManager : MonoBehaviour
     {
         if (GetCurrentWorld() == "water")
         {
-            _isFilled = true;
+            fillObject();
+            
         }
         else if (GetCurrentWorld() == "fire")
         {
             _isBaked = true;
             if (_isFilled) { _isBoiled = true; }
         }
+
     }
 
     public bool isFilled()
@@ -43,11 +54,16 @@ public class ObjectStateManager : MonoBehaviour
     public void useWater()
     {
         _isFilled = false;
+        _renderer.material.color = Color.gray;
     }
 
     public void fillObject()
     {
         _isFilled = true;
+        if (gameObject.name.Contains("water") && _renderer.material != filledMaterial)
+        {
+            _renderer.material = filledMaterial;
+        }
     }
 
     public void Boil()
