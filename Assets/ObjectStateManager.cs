@@ -8,8 +8,6 @@ public class ObjectStateManager : MonoBehaviour
     private bool _isBaked;
     private bool _isBoiled;
     private Renderer _renderer;
-    public Material filledMaterial;
-    public Material emptyMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -60,9 +58,9 @@ public class ObjectStateManager : MonoBehaviour
     public void fillObject()
     {
         _isFilled = true;
-        if (gameObject.name.Contains("water") && _renderer.material != filledMaterial)
+        if (gameObject.name.Contains("water") && _renderer.material.color != Color.blue)
         {
-            _renderer.material = filledMaterial;
+            _renderer.material.color = Color.blue;
         }
     }
 

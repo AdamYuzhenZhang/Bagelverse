@@ -9,15 +9,16 @@ public class PotController : MonoBehaviour
     public GameObject waterBottle;
     public GameObject waterBlob;
     public GameObject bagels;
+    public int amountOfWater;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (amountOfWater <= 0) amountOfWater = 300;
         render = GetComponent<Renderer>();
     }
 
-    void targetsCollided()
+    void fillPot()
     {
         ObjectStateManager waterControl = waterBottle.GetComponent<ObjectStateManager>();
         if (waterControl.isFilled())
@@ -25,7 +26,12 @@ public class PotController : MonoBehaviour
             waterControl.useWater();
             Vector3 newPosistion = transform.position;
             newPosistion.y += 1;
-            Instantiate(waterBlob, newPosistion, Quaternion.identity);
+            for (int i = 0; i < amountOfWater; i++)
+            {
+                newPosistion.x += (i % 4 * .1f);
+                GameObject waterDrop = Instantiate(waterBlob, newPosistion, Quaternion.identity);
+                waterDrop.transform.localScale = new Vector3(.1f, .1f, .1f);
+            }
             GetComponent<ObjectStateManager>().fillObject();
         }
 
@@ -34,9 +40,9 @@ public class PotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Intersects(waterBottle.GetComponent<Renderer>().bounds) && render.bounds.Intersects(bagels.GetComponent<Renderer>().bounds))
+        if (render.bounds.Intersects(waterBottle.GetComponent<Renderer>().bounds))
         {
-            targetsCollided();
+            fillPot();
         }
     }
 }
