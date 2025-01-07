@@ -30,7 +30,7 @@ public class MixingBowlController : MonoBehaviour
         }
     }
 
-    void targetsCollided()
+    void makeDough()
     {
         ObjectStateManager waterControl = water.GetComponent<ObjectStateManager>();
         if (waterControl.isFilled())
@@ -51,7 +51,7 @@ public class MixingBowlController : MonoBehaviour
         {
             if (render.bounds.Intersects(water.GetComponent<Renderer>().bounds))
             {
-                targetsCollided();
+                makeDough();
             }
         }
         }

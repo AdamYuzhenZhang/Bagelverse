@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: f3b262529d6126749af7f6e6c2e0a025
+guid: bf5eb53a3d1648742b478399de2870d9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - flour: {instanceID: 0}
-  - water: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
