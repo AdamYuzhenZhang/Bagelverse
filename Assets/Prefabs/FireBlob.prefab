@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 1390572330219057162}
   - component: {fileID: -8853154407416712274}
   - component: {fileID: -5477094157392155829}
-  - component: {fileID: 4516203463568770280}
   m_Layer: 0
-  m_Name: waterBlob
+  m_Name: FireBlob
   m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30ec4517cb6108b4aad7f7e0d23ee06b, type: 2}
+  - {fileID: 2100000, guid: 604caef3b2a3309499d6393c3d587a05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,9 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc8354b299b0784888b00fe7202104a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isFilled: 0
-  _isBaked: 0
-  _isBoiled: 0
 --- !u!54 &-5477094157392155829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,15 +146,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4516203463568770280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523640291019334847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f4b1b209ec74d4bbb207fcd651d907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ObjectStateManager : MonoBehaviour
 {
-    private bool _isFilled;
-    private bool _isBaked;
-    private bool _isBoiled;
+    public bool _isFilled;
+    public bool _isBaked;
+    public bool _isBoiled;
     private Renderer _renderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        _isFilled = true;
+        //useWater();
+        _isFilled = gameObject.name.Contains("water");
         _isBaked = false;
         _isBoiled = false;
         _renderer = GetComponent<Renderer>();
@@ -20,27 +21,45 @@ public class ObjectStateManager : MonoBehaviour
 
     private string GetCurrentWorld()
     {
+        GameObject fire = GameObject.FindGameObjectWithTag("fire");
+        Renderer fireRender = fire.GetComponent<Renderer>();
+
+        //Debug.Log(fireRender == null);
+        if (_renderer.bounds.Intersects(fireRender.bounds))
+        {
+            return "fire";
+        }
+
         GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
         foreach (GameObject water in waters) { 
             Renderer waterRender = water.GetComponent<Renderer>();
-            if (waterRender && _renderer && _renderer.bounds.Intersects(waterRender.bounds)) return "water"; 
+            ObjectStateManager state = water.GetComponent<ObjectStateManager>();
+            if (waterRender && _renderer && _renderer.bounds.Intersects(waterRender.bounds)) {
+                if (state.isBoiled()) return "hot_water";
+                return "water"; 
+            } 
         }
-        return "";
+        
+        return "kitchen";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetCurrentWorld() == "water")
+        string world = GetCurrentWorld();
+        if (world == "fire")
+        {
+            Bake();
+        }
+        else if (world == "water")
         {
             fillObject();
             
-        }
-        else if (GetCurrentWorld() == "fire")
+        } else if (world == "hot_water")
         {
-            _isBaked = true;
-            if (_isFilled) { _isBoiled = true; }
+            Boil();
         }
+       
 
     }
 
@@ -52,21 +71,37 @@ public class ObjectStateManager : MonoBehaviour
     public void useWater()
     {
         _isFilled = false;
-        _renderer.material.color = Color.gray;
+        if (gameObject.name.Contains("water"))
+            _renderer.material.color = Color.gray;
     }
 
     public void fillObject()
     {
+        if (_isBoiled)
+        {
+            return;
+        }
         _isFilled = true;
         if (gameObject.name.Contains("water") && _renderer.material.color != Color.blue)
         {
             _renderer.material.color = Color.blue;
         }
+        //Debug.Log("testing: " + gameObject.name + " filled");
     }
 
     public void Boil()
     {
         _isBoiled = true;
+        _isFilled = false;
+        Debug.Log("Boiling: " + gameObject.name);
+        if (gameObject.name.Contains("bagel"))
+        {
+            _renderer.material.color = Color.gray;
+        }
+        if (gameObject.name.Contains("water")) // Visual change for boiled water.
+        {
+            _renderer.material.color = Color.white;
+        }
     }
 
     public bool isBoiled()
@@ -86,6 +121,14 @@ public class ObjectStateManager : MonoBehaviour
 
     public void Bake()
     {
+        
+        if (gameObject.name.Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
+        {
+            _renderer.material.color = Color.black;
+        }
         _isBaked |= true;
+        if (_isFilled && !_isBoiled) {
+            Boil(); 
+        }
     }
 }

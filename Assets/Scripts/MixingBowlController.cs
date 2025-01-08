@@ -40,7 +40,6 @@ public class MixingBowlController : MonoBehaviour
             newPosistion.y += 1; // Place above mixing bowl + drops in w/ gravity.
             GameObject newDough = Instantiate(dough, newPosistion, Quaternion.identity);
             newDough.GetComponent<DoughController>().SetFlour(flour);
-            flour.SetActive(false); // Flour gets used
         }    
     }
 

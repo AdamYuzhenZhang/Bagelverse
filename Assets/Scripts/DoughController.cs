@@ -11,7 +11,7 @@ public class DoughController : MonoBehaviour
     public GameObject rollingPin;
     public GameObject bagels;
     public GameObject flour;
-
+    private bool contactWithTray;
 
     // Start is called before the first frame update
     void Start()
@@ -19,25 +19,47 @@ public class DoughController : MonoBehaviour
         render = GetComponent<Renderer>();
         bakingTray = GameObject.FindGameObjectWithTag("tray");
         rollingPin = GameObject.FindGameObjectWithTag("rollingPin");
+        contactWithTray = false;
     }
 
-    void targetsCollided() 
+    void DoughToBagel() 
     {
        gameObject.SetActive(false);
-       GameObject newBagels = Instantiate(bagels, bakingTray.transform.position, Quaternion.identity);
+       GameObject newBagel = Instantiate(bagels, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Intersects(rollingPin.GetComponent<Renderer>().bounds) && render.bounds.Intersects(bakingTray.GetComponent<Renderer>().bounds))
+        if (render.bounds.Intersects(rollingPin.GetComponent<Renderer>().bounds) && !contactWithTray)
         {
-            targetsCollided();
+            DoughToBagel();
         }
         if (transform.position.y < -10) // Respawns flour if dough falls.
         {
             gameObject.SetActive(false);
             Instantiate(flour, new Vector3(-0.564999998f, 0.898000002f, 0.370999992f), Quaternion.identity);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.gameObject.name.Contains("tray"))
+        {
+            contactWithTray = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.name.Contains("tray"))
+        {
+            contactWithTray = false;
         }
     }
 

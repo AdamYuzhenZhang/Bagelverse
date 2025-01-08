@@ -9,6 +9,7 @@ TagManager:
   - water
   - rollingPin
   - tray
+  - fire
   layers:
   - Default
   - TransparentFX
