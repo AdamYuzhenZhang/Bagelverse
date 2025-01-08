@@ -47,7 +47,7 @@ public class ObjectStateManager : MonoBehaviour
     void Update()
     {
         string world = GetCurrentWorld();
-        if (world == "fire")
+        if (world == "fire" && gameObject.name != "default_water")
         {
             Bake();
         }
@@ -121,7 +121,6 @@ public class ObjectStateManager : MonoBehaviour
 
     public void Bake()
     {
-        
         if (gameObject.name.Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
         {
             _renderer.material.color = Color.black;
