@@ -43,6 +43,14 @@ public class ObjectStateManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (transform.position.y < -5)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public bool isFilled()
     {
         return _isFilled;

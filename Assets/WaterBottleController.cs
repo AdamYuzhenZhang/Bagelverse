@@ -101,7 +101,8 @@ public class WaterBottleController : MonoBehaviour
             Vector3 capPosition = transform.position + transform.up * waterSpawnPoint;
             for (int i = 0; i < spillRate; i++)
             {
-                float yOffset = i * .5f;
+                float yOffset = i * .05f;
+                float xOffset = i * .05f;
                 capPosition.y += yOffset;
                 Instantiate(waterDrop, capPosition, Quaternion.identity);
             }

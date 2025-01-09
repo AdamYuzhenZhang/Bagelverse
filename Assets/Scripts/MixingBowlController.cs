@@ -6,7 +6,6 @@ public class MixingBowlController : MonoBehaviour
 {
     private Renderer render;
     public GameObject flour;
-    public GameObject water;
     public GameObject dough;
     private bool activated;
 
@@ -32,26 +31,35 @@ public class MixingBowlController : MonoBehaviour
 
     void makeDough()
     {
-        ObjectStateManager waterControl = water.GetComponent<ObjectStateManager>();
-        if (waterControl.isFilled())
-        {
-            waterControl.useWater();
-            Vector3 newPosistion = transform.position;
-            newPosistion.y += 1; // Place above mixing bowl + drops in w/ gravity.
-            GameObject newDough = Instantiate(dough, newPosistion, Quaternion.identity);
-            newDough.GetComponent<DoughController>().SetFlour(flour);
-        }    
+        Vector3 newPosistion = transform.position;
+        newPosistion.y += 1; // Place above mixing bowl + drops in w/ gravity.
+        GameObject newDough = Instantiate(dough, newPosistion, Quaternion.identity);
+        newDough.GetComponent<DoughController>().SetFlour(flour);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Intersects(flour.GetComponent<Renderer>().bounds))
+        if (render.bounds.Intersects(flour.GetComponent<Renderer>().bounds) && activated == false)
         {
-            if (render.bounds.Intersects(water.GetComponent<Renderer>().bounds))
+            GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
+            foreach (GameObject water in waters)
             {
-                makeDough();
+                if (render.bounds.Intersects(water.GetComponent<Renderer>().bounds))
+                {
+                    if (!activated)
+                    {
+                        makeDough();
+                        activated = true;
+                        Destroy(water);
+                    }
+                    else
+                    {
+                        Destroy(water);
+                    }
+
+                }
             }
         }
-        }
+    }
 }
