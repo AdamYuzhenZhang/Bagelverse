@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: f20fe302dd3277c45805ce74ef29cc94
+guid: bd00cca0b45ca6540bdd3fe10fa68036
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - water: {fileID: 919132149155446097, guid: e8ab7c8e6a6dfb24dabf2a606f01f201, type: 3}
-  - bagels: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

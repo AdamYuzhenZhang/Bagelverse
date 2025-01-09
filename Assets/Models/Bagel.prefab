@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1804812934483308317}
   - component: {fileID: -4069265701779538070}
   - component: {fileID: -9060072359826862449}
-  - component: {fileID: 1157300698978160764}
+  - component: {fileID: 1797687563946014971}
   m_Layer: 0
-  m_Name: bagel
+  m_Name: Bagel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,14 +104,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1157300698978160764
+--- !u!65 &1797687563946014971
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315098789745800615}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2d7b23001a8fb7e47a8b33ad4509fd4d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -2,78 +2,94 @@ using UnityEngine;
 
 public class SteamGenerator : MonoBehaviour
 {
-    void Start()
+    [Header("Particle Settings")]
+    [SerializeField] private int maxParticles = 100;
+    [SerializeField] private float emissionRate = 10f;
+    [SerializeField] private Vector2 particleLifetime = new Vector2(2f, 3f);
+    [SerializeField] private Vector2 particleSize = new Vector2(0.2f, 0.4f);
+    [SerializeField] private float startSpeed = 1f;
+    [SerializeField] private Color steamColor = Color.white;
+
+    [Header("Steam Behavior")]
+    [SerializeField] private float spreadAngle = 15f;
+    [SerializeField] private float fadeSpeed = 0.5f;
+
+    private ParticleSystem steamParticles;
+    private ParticleSystem.MainModule mainModule;
+    private ParticleSystem.EmissionModule emissionModule;
+
+    private void Awake()
     {
-        // Create a new GameObject for the Particle System
-        GameObject particleSystemObject = new GameObject("SteamParticleSystem");
+        InitializeParticleSystem();
+        ConfigureParticleSystem();
+    }
 
-        // Add a Particle System component to the GameObject
-        ParticleSystem ps = particleSystemObject.AddComponent<ParticleSystem>();
+    private void InitializeParticleSystem()
+    {
+        steamParticles = gameObject.AddComponent<ParticleSystem>();
+        mainModule = steamParticles.main;
+        emissionModule = steamParticles.emission;
+    }
 
-        // Access the Particle System's main module
-        var main = ps.main;
-        main.duration = 5f;
-        main.loop = true;
-        main.startLifetime = new ParticleSystem.MinMaxCurve(2f, 5f); // Random between 2 and 5 seconds
-        main.startSpeed = new ParticleSystem.MinMaxCurve(1f, 3f); // Random between 1 and 3
-        main.startSize = new ParticleSystem.MinMaxCurve(0.2f, 0.5f); // Random size
-        main.startColor = new Color(0.8f, 0.8f, 0.8f, 0.5f); // Light gray with transparency
-        main.simulationSpace = ParticleSystemSimulationSpace.World;
+    private void ConfigureParticleSystem()
+    {
+        // Main module configuration
+        mainModule.maxParticles = maxParticles;
+        mainModule.startLifetime = new ParticleSystem.MinMaxCurve(particleLifetime.x, particleLifetime.y);
+        mainModule.startSize = new ParticleSystem.MinMaxCurve(particleSize.x, particleSize.y);
+        mainModule.startSpeed = startSpeed;
+        mainModule.loop = true;
+        mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
+        mainModule.startColor = steamColor;
 
-        // Configure Emission
-        var emission = ps.emission;
-        emission.rateOverTime = 20f; // Particles per second
+        // Emission module configuration
+        emissionModule.rateOverTime = emissionRate;
 
-        // Configure Shape
-        var shape = ps.shape;
+        // Shape module configuration
+        var shape = steamParticles.shape;
+        shape.angle = spreadAngle;
         shape.shapeType = ParticleSystemShapeType.Cone;
-        shape.angle = 15f;
-        shape.radius = 0.3f;
 
-        // Configure Velocity over Lifetime
-        var velocityOverLifetime = ps.velocityOverLifetime;
-        velocityOverLifetime.enabled = true;
-
-        // Use a constant value for Y velocity
-        velocityOverLifetime.y = new ParticleSystem.MinMaxCurve(1f, 2f); // Random between 1 and 2
-
-        // Set X and Z velocity explicitly to constants (or zero if no movement is needed)
-        velocityOverLifetime.x = new ParticleSystem.MinMaxCurve(0f); // No movement in X
-        velocityOverLifetime.z = new ParticleSystem.MinMaxCurve(0f); // No movement in Z
-
-        // Configure Color over Lifetime
-        var colorOverLifetime = ps.colorOverLifetime;
+        // Color module configuration
+        var colorOverLifetime = steamParticles.colorOverLifetime;
         colorOverLifetime.enabled = true;
+
         Gradient gradient = new Gradient();
         gradient.SetKeys(
             new GradientColorKey[] {
-                new GradientColorKey(new Color(0.8f, 0.8f, 0.8f, 1f), 0f),
-                new GradientColorKey(new Color(0.8f, 0.8f, 0.8f, 0f), 1f)
+                new GradientColorKey(steamColor, 0.0f),
+                new GradientColorKey(steamColor, 1.0f)
             },
             new GradientAlphaKey[] {
-                new GradientAlphaKey(1f, 0f),
-                new GradientAlphaKey(0f, 1f)
+                new GradientAlphaKey(0.3f, 0.0f),
+                new GradientAlphaKey(0.0f, 1.0f)
             }
         );
-        colorOverLifetime.color = new ParticleSystem.MinMaxGradient(gradient);
 
-        // Configure Size over Lifetime
-        var sizeOverLifetime = ps.sizeOverLifetime;
-        sizeOverLifetime.enabled = true;
-        sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(0.5f, 1f);
+        colorOverLifetime.color = gradient;
 
-        // Configure Noise
-        var noise = ps.noise;
-        noise.enabled = true;
-        noise.strength = 0.2f;
-        noise.frequency = 1f;
+        SteamOff();
+    }
 
-        // Optional: Assign material to renderer
-        var renderer = ps.GetComponent<ParticleSystemRenderer>();
-        renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
-        renderer.material.color = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+    public void SteamOn()
+    {
+        steamParticles.Play();
+    }
 
-        // Set the position of the particle system
-        particleSystemObject.transform.position = new Vector3(0, 0, 0);
+    public void SteamOff()
+    {
+        steamParticles.Stop();
+    }
+
+    public bool IsSteamActive()
+    {
+        return steamParticles.isPlaying;
+    }
+
+    public void SetSteamColor(Color newColor)
+    {
+        steamColor = newColor;
+        mainModule.startColor = steamColor;
+        ConfigureParticleSystem();
     }
 }

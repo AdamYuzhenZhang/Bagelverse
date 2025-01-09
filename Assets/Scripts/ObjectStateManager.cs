@@ -19,47 +19,27 @@ public class ObjectStateManager : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
-    private string GetCurrentWorld()
+    private void OnCollisionEnter(Collision collision)
     {
-        GameObject fire = GameObject.FindGameObjectWithTag("fire");
-        Renderer fireRender = fire.GetComponent<Renderer>();
-
-        //Debug.Log(fireRender == null);
-        if (_renderer.bounds.Intersects(fireRender.bounds))
-        {
-            return "fire";
-        }
-
-        GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
-        foreach (GameObject water in waters) { 
-            Renderer waterRender = water.GetComponent<Renderer>();
-            ObjectStateManager state = water.GetComponent<ObjectStateManager>();
-            if (waterRender && _renderer && _renderer.bounds.Intersects(waterRender.bounds)) {
-                if (state.isBoiled()) return "hot_water";
-                return "water"; 
-            } 
-        }
-        
-        return "kitchen";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        string world = GetCurrentWorld();
-        if (world == "fire" && gameObject.name != "default_water")
-        {
-            Bake();
-        }
-        else if (world == "water")
-        {
-            fillObject();
-            
-        } else if (world == "hot_water")
+        ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>();
+        bool shouldBoil = collision.gameObject.tag == "fire" && _isFilled && !_isBoiled;
+        if (shouldBoil || (state && state.isBoiled()))
         {
             Boil();
         }
-       
+        else if (collision.gameObject.tag == "fire" && !_isFilled && !_isBaked)
+        {
+            Bake();
+        }
+        else if (collision.gameObject.tag == "water" && !_isFilled)
+        {
+            Fill();
+        }
+        
+        if (_isBoiled && !GetComponent<SteamGenerator>().IsSteamActive())
+        {
+            GetComponent<SteamGenerator>().SteamOn();
+        }
 
     }
 
@@ -75,12 +55,13 @@ public class ObjectStateManager : MonoBehaviour
             _renderer.material.color = Color.gray;
     }
 
-    public void fillObject()
+    public void Fill()
     {
-        if (_isBoiled)
-        {
-            return;
-        }
+        //if (_isBoiled)
+        //{
+        //    return;
+        //}
+        _isBoiled = false;
         _isFilled = true;
         if (gameObject.name.Contains("water") && _renderer.material.color != Color.blue)
         {
@@ -93,7 +74,6 @@ public class ObjectStateManager : MonoBehaviour
     {
         _isBoiled = true;
         _isFilled = false;
-        Debug.Log("Boiling: " + gameObject.name);
         if (gameObject.name.Contains("bagel"))
         {
             _renderer.material.color = Color.gray;
@@ -101,6 +81,8 @@ public class ObjectStateManager : MonoBehaviour
         if (gameObject.name.Contains("water")) // Visual change for boiled water.
         {
             _renderer.material.color = Color.white;
+            //gameObject.GetComponent<SphereJiggle>().StartJiggle();
+            gameObject.GetComponent<SteamGenerator>().SetSteamColor(Color.white);
         }
     }
 
@@ -125,9 +107,6 @@ public class ObjectStateManager : MonoBehaviour
         {
             _renderer.material.color = Color.black;
         }
-        _isBaked |= true;
-        if (_isFilled && !_isBoiled) {
-            Boil(); 
-        }
+        _isBaked = true;
     }
 }

@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 1390572330219057162}
   - component: {fileID: -8853154407416712274}
   - component: {fileID: -5477094157392155829}
+  - component: {fileID: 999701236532345617}
+  - component: {fileID: 777431662978726295}
   m_Layer: 0
-  m_Name: WaterDrop
+  m_Name: waterDrop
   m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.18958355, y: 0.8766305, z: 0.22315985}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,7 +95,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523640291019334847}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ab5d17917ac6c784b95691bfe888932b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -119,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc8354b299b0784888b00fe7202104a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filledMaterial: {fileID: 0}
-  emptyMaterial: {fileID: 0}
+  _isFilled: 0
+  _isBaked: 0
+  _isBoiled: 0
 --- !u!54 &-5477094157392155829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,7 +132,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523640291019334847}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -148,3 +151,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &999701236532345617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523640291019334847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0ac8ee9f5c954bbba3d5c1a9f53f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 10
+  magnitude: 0.06
+  rotationSpeed: 0
+--- !u!114 &777431662978726295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523640291019334847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e29924cfbaa61444a21599a957e5bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxParticles: 100
+  emissionRate: 1
+  particleLifetime: {x: 2, y: 3}
+  particleSize: {x: 0.2, y: 0.4}
+  startSpeed: 1
+  spreadAngle: 15
+  fadeSpeed: 0.5
