@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BakingTrayController : MonoBehaviour
 {
+
+    private Transform bagelTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +17,7 @@ public class BakingTrayController : MonoBehaviour
     {
         if (IsSpilling())
         {
-            foreach (Transform child in transform)
-            {
-                child.transform.SetParent(null);
-            }
+            bagelTransform.SetParent(null);
         }
     }
 
@@ -27,6 +26,7 @@ public class BakingTrayController : MonoBehaviour
         if (collision.gameObject.name.ToLower().Contains("bagel"))
         {
             collision.gameObject.transform.SetParent(gameObject.transform);
+            bagelTransform = collision.gameObject.transform;
         }
     }
 

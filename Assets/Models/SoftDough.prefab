@@ -560,6 +560,8 @@ GameObject:
   - component: {fileID: 966159602180401447}
   - component: {fileID: 5467228935672442355}
   - component: {fileID: 6246637659916278459}
+  - component: {fileID: 7307685888711227492}
+  - component: {fileID: 4922172252124103574}
   m_Layer: 0
   m_Name: Ball_Aramture
   m_TagString: Untagged
@@ -780,6 +782,34 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7307685888711227492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487202796671783171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a327e7948ce02a4c8201c9b763c0e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bagelModel: {fileID: 1315098789745800615, guid: c89d7f964a635614c97dd1f07e56870f,
+    type: 3}
+--- !u!114 &4922172252124103574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487202796671783171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a18b2b1fd5df81d41879d7e28fe678dc, type: 3}
+  audioClip2: {fileID: 8300000, guid: a18b2b1fd5df81d41879d7e28fe678dc, type: 3}
 --- !u!1 &5110672327295393942
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,8 +933,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6561391907175695893}
   - component: {fileID: 1003902466857196655}
-  - component: {fileID: -2764616380171532432}
-  - component: {fileID: -2666885707334830598}
   m_Layer: 0
   m_Name: SoftDough
   m_TagString: Untagged
@@ -950,33 +978,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-2764616380171532432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5784151898850647215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a327e7948ce02a4c8201c9b763c0e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bagelModel: {fileID: 1315098789745800615, guid: c89d7f964a635614c97dd1f07e56870f,
-    type: 3}
---- !u!114 &-2666885707334830598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5784151898850647215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 470fbc12d90420946b722e27e9f247e3, type: 3}
 --- !u!1 &8040734328291243999
 GameObject:
   m_ObjectHideFlags: 0

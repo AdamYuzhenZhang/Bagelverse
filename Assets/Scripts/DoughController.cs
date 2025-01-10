@@ -1,47 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
-using Meta.Voice.Audio;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DoughController : MonoBehaviour
 {
     public GameObject bagelModel;
     private GameObject flourModel;
     private bool contactWithTray;
+    private bool destroy;
 
     // Start is called before the first frame update
     void Start()
     {
         contactWithTray = false;
+        destroy = false;
     }
 
     void DoughToBagel() 
     {
        GameObject newBagel = Instantiate(bagelModel, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+       destroy = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (Transform child in transform) // Destroy dough after falling.
+        AudioPlayer player = GetComponent<AudioPlayer>();
+        if (!destroy && transform.position.y < .3) // Destroy dough after falling.
         {
-            if (child.name.ToLower().Contains("aramture") && child.position.y < -10) {
-                GetComponent<AudioPlayer>().Play();
-                Destroy(gameObject);
-            }
+            //float randomNumber = Random.Range(0f, 1f);
+            //if (randomNumber < .4) player.SetAudio(0);
+            //else
+            player.SetAudio(1);
+            player.Play();
+            destroy = true;
+         
+        }
+        if (destroy && !player.IsPlaying())
+        {
+            print("Destroy: " + transform.parent.gameObject.name);
+            Destroy(transform.parent.gameObject);
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("rollingPin") && contactWithTray)
+        if (collision.gameObject.name.ToLower().Contains("rollingpin") && contactWithTray)
         {
+
             DoughToBagel();
         }
-        else if (collision.gameObject.name.Contains("tray"))
+        else if (collision.gameObject.name.ToLower().Contains("tray"))
         {
             contactWithTray = true;
         }
@@ -56,7 +63,7 @@ public class DoughController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name.Contains("tray"))
+        if (collision.gameObject.name.ToLower().Contains("tray"))
         {
             contactWithTray = false;
         }

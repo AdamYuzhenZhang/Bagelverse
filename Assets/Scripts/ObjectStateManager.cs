@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectStateManager : MonoBehaviour
 {
-    public bool _isFilled;
+    public bool _isWater;
     public bool _isBaked;
     public bool _isBoiled;
     private Renderer _renderer;
@@ -13,7 +13,7 @@ public class ObjectStateManager : MonoBehaviour
     void Start()
     {
         //useWater();
-        _isFilled = gameObject.name.Contains("water");
+        _isWater = gameObject.name.ToLower().Contains("water");
         _isBaked = false;
         _isBoiled = false;
         _renderer = GetComponent<Renderer>();
@@ -21,25 +21,21 @@ public class ObjectStateManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>();
-        bool shouldBoil = collision.gameObject.tag == "fire" && _isFilled && !_isBoiled;
+        ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>(); // Should Boil Bagels
+        bool shouldBoil = collision.gameObject.tag == "fire" && _isWater && !_isBoiled; // Should boil water
         if (shouldBoil || (state && state.isBoiled()))
         {
             Boil();
         }
-        else if (collision.gameObject.tag == "fire" && !_isFilled && !_isBaked)
+        else if (collision.gameObject.tag == "fire" && !_isWater && !_isBaked)
         {
             Bake();
         }
-        else if (collision.gameObject.tag == "water" && !_isFilled)
-        {
-            Fill();
-        }
         
-        if (_isBoiled && !GetComponent<SteamGenerator>().IsSteamActive())
-        {
-            GetComponent<SteamGenerator>().SteamOn();
-        }
+        //if (_isBoiled && !GetComponent<SteamGenerator>().IsSteamActive())
+        //{
+        //    //GetComponent<SteamGenerator>().SteamOn();
+        //}
 
     }
 
@@ -51,46 +47,21 @@ public class ObjectStateManager : MonoBehaviour
         }
     }
 
-    public bool isFilled()
-    {
-        return _isFilled;
-    }
-
-    public void useWater()
-    {
-        _isFilled = false;
-        if (gameObject.name.Contains("water"))
-            _renderer.material.color = Color.gray;
-    }
-
-    public void Fill()
-    {
-        //if (_isBoiled)
-        //{
-        //    return;
-        //}
-        _isBoiled = false;
-        _isFilled = true;
-        if (gameObject.name.Contains("water") && _renderer.material.color != Color.blue)
-        {
-            _renderer.material.color = Color.blue;
-        }
-        //Debug.Log("testing: " + gameObject.name + " filled");
-    }
 
     public void Boil()
     {
         _isBoiled = true;
-        _isFilled = false;
-        if (gameObject.name.Contains("bagel"))
+        _isWater = false;
+        if (gameObject.name.ToLower().Contains("bagel"))
         {
+            // TODO: Raw Bagel Model
             _renderer.material.color = Color.gray;
         }
-        if (gameObject.name.Contains("water")) // Visual change for boiled water.
+        if (gameObject.name.ToLower().Contains("water")) // Visual change for boiled water.
         {
             _renderer.material.color = Color.white;
             //gameObject.GetComponent<SphereJiggle>().StartJiggle();
-            gameObject.GetComponent<SteamGenerator>().SetSteamColor(Color.white);
+            //gameObject.GetComponent<SteamGenerator>().SetSteamColor(Color.white);
         }
     }
 
@@ -111,8 +82,10 @@ public class ObjectStateManager : MonoBehaviour
 
     public void Bake()
     {
-        if (gameObject.name.Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
+        print(gameObject.name + " baking");
+        if (gameObject.name.ToLower().Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
         {
+            // TODO: Baked Bagel Model
             _renderer.material.color = Color.black;
         }
         _isBaked = true;

@@ -40,8 +40,9 @@ public class MixingBowlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Intersects(flour.GetComponent<Renderer>().bounds) && activated == false)
+        if (render.bounds.Intersects(flour.GetComponent<Renderer>().bounds))
         {
+            if (activated) return;
             GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
             print("number of waters: " + waters.Length);
             foreach (GameObject water in waters)
@@ -62,6 +63,8 @@ public class MixingBowlController : MonoBehaviour
 
                 }
             }
+        } else
+        {
             activated = false;
         }
     }

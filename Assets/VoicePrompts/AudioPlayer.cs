@@ -4,6 +4,7 @@ public class AudioPlayer : MonoBehaviour
 {
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip audioClip2;
 
     void Start()
     {
@@ -15,6 +16,17 @@ public class AudioPlayer : MonoBehaviour
         if (audioClip != null)
         {
             audioSource.clip = audioClip;
+        }
+    }
+
+    public void SetAudio(int num)
+    {
+        if (num == 0)
+        {
+            audioSource.clip = audioClip;
+        } if (num == 1)
+        {
+            audioSource.clip = audioClip2;
         }
     }
 
