@@ -1,58 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using Meta.Voice.Audio;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DoughController : MonoBehaviour
 {
-    private Renderer render;
-
-    public GameObject bakingTray;
-    public GameObject rollingPin;
-    public GameObject bagels;
-    public GameObject flour;
+    public GameObject bagelModel;
+    private GameObject flourModel;
     private bool contactWithTray;
 
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<Renderer>();
-        bakingTray = GameObject.FindGameObjectWithTag("tray");
-        rollingPin = GameObject.FindGameObjectWithTag("rollingPin");
         contactWithTray = false;
     }
 
     void DoughToBagel() 
     {
-       gameObject.SetActive(false);
-       GameObject newBagel = Instantiate(bagels, transform.position, Quaternion.identity);
+       GameObject newBagel = Instantiate(bagelModel, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (render.bounds.Intersects(rollingPin.GetComponent<Renderer>().bounds) && !contactWithTray)
+        foreach (Transform child in transform) // Destroy dough after falling.
         {
-            DoughToBagel();
-        }
-        if (transform.position.y < -10) // Respawns flour if dough falls.
-        {
-            gameObject.SetActive(false);
-            Instantiate(flour, new Vector3(-0.564999998f, 0.898000002f, 0.370999992f), Quaternion.identity);
+            if (child.name.ToLower().Contains("aramture") && child.position.y < -10) {
+                GetComponent<AudioPlayer>().Play();
+                Destroy(gameObject);
+            }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.name.Contains("tray"))
+        if (collision.gameObject.name.Contains("rollingPin") && contactWithTray)
+        {
+            DoughToBagel();
+        }
+        else if (collision.gameObject.name.Contains("tray"))
         {
             contactWithTray = true;
         }
     }
 
+
+
     private void OnCollisionStay(Collision collision)
     {
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -65,7 +64,7 @@ public class DoughController : MonoBehaviour
 
     public void SetFlour(GameObject newFlour)
     {
-        flour = newFlour;
+        flourModel = newFlour;
     }
 
 

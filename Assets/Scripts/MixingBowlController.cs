@@ -34,7 +34,7 @@ public class MixingBowlController : MonoBehaviour
         Vector3 newPosistion = transform.position;
         newPosistion.y += 1; // Place above mixing bowl + drops in w/ gravity.
         GameObject newDough = Instantiate(dough, newPosistion, Quaternion.identity);
-        newDough.GetComponent<DoughController>().SetFlour(flour);
+        //newDough.GetComponent<DoughController>().SetFlour(flour);
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class MixingBowlController : MonoBehaviour
         if (render.bounds.Intersects(flour.GetComponent<Renderer>().bounds) && activated == false)
         {
             GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
+            print("number of waters: " + waters.Length);
             foreach (GameObject water in waters)
             {
                 if (render.bounds.Intersects(water.GetComponent<Renderer>().bounds))
@@ -55,11 +56,13 @@ public class MixingBowlController : MonoBehaviour
                     }
                     else
                     {
+                        print("destroying left over water");
                         Destroy(water);
                     }
 
                 }
             }
+            activated = false;
         }
     }
 }
