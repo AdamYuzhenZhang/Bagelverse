@@ -15,6 +15,7 @@ public class AudioPlayer : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        audioSource.playOnAwake = false;
         if (audioClip != null)
         {
             audioSource.clip = audioClip;

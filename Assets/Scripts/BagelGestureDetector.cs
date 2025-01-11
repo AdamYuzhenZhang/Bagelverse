@@ -18,16 +18,19 @@ public class BagelGestureDetector : MonoBehaviour
     [SerializeField] private GameObject firstBagel;
     [SerializeField] private GameObject gameScene;
     [SerializeField] private GameObject grabbables;
-    [SerializeField] private AudioPlayer _audio;
+    [SerializeField] private GameObject bagelPortal;
+    private AudioPlayer _audio;
+    private bool playedAudio;
 
 
     private void Start()
     {
+        _audio = GetComponent<AudioPlayer>();
         // hide game scene and first bagel
         firstBagel.SetActive(false);
         gameScene.SetActive(false);
         grabbables.SetActive(false);
-        _audio.Play();
+        playedAudio = false;
 
     }
 
@@ -61,8 +64,12 @@ public class BagelGestureDetector : MonoBehaviour
     {
         // check if the index tips and thumb tips are close to each other
         // make sure the index and thumbs are not too close to each other, and index base are not too close
-
-        if (rigTracker.handBonesInitialized)
+        if (!playedAudio)
+        {
+            _audio.Play();
+            playedAudio=true;
+        }
+            if (rigTracker.handBonesInitialized)
         {
             Vector3 leftIndex = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexTip].position;
             Vector3 leftIndexBase = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexProximal].position;
@@ -124,15 +131,31 @@ public class BagelGestureDetector : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.up, toPlayer);
         firstBagel.transform.rotation = targetRotation;
         Debug.Log("Bagel Created");
-        
+
+        // Place grabbables at Pose height.
+        //grabbables.transform.position =  new Vector3(
+        //    grabbables.transform.position.x,  // Keep current x
+        //    rightThumb.y,                  // Set the desired y height
+        //    grabbables.transform.position.z   // Keep current z
+        //);
+
+        // Play pose completion audio.
+        _audio.SetAudio(2);
+        _audio.Play();
         // after a delay
         yield return new WaitForSeconds(3f);
-            
+
+        // Move game scene to user's eye level
+        float bagelCenterHeight = bagelPortal.GetComponent<Renderer>().bounds.size.y / 2;
+        gameScene.transform.Translate(new Vector3(0, Camera.main.transform.position.y - bagelCenterHeight, 0));
+
+
+
         // set bagel inactive, enable the scene
         firstBagel.SetActive(false);
         gameScene.SetActive(true);
         grabbables.SetActive(true);
-        _audio.SetAudio(2);
+        _audio.SetAudio(3);
         _audio.Play();
         // wait another frame
         yield return null;
