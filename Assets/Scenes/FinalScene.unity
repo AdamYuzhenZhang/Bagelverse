@@ -24639,7 +24639,7 @@ MonoBehaviour:
   firstBagel: {fileID: 983368093}
   gameScene: {fileID: 1282964738}
   grabbables: {fileID: 450260038}
-  _audio: {fileID: 0}
+  _audio: {fileID: 1362794512}
 --- !u!114 &1362794512
 MonoBehaviour:
   m_ObjectHideFlags: 0
