@@ -6,6 +6,10 @@ TagManager:
   tags:
   - LeftHand
   - RightHand
+  - water
+  - rollingPin
+  - tray
+  - fire
   layers:
   - Default
   - TransparentFX
