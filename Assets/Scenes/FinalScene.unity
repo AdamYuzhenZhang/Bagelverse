@@ -24615,7 +24615,7 @@ MonoBehaviour:
   firstBagel: {fileID: 983368093}
   gameScene: {fileID: 1282964738}
   grabbables: {fileID: 450260038}
-  audio: {fileID: 1362794512}
+  _audio: {fileID: 0}
 --- !u!114 &1362794512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24629,7 +24629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 6b4d10c22204c1746a9c5629d9e5c3c8, type: 3}
-  audioClip2: {fileID: 0}
+  audioClip2: {fileID: 8300000, guid: 346a237d74195534d92ec056ed9a8f2f, type: 3}
   audioClip3: {fileID: 0}
 --- !u!1 &1362988329
 GameObject:

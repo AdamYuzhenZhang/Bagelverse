@@ -18,7 +18,7 @@ public class BagelGestureDetector : MonoBehaviour
     [SerializeField] private GameObject firstBagel;
     [SerializeField] private GameObject gameScene;
     [SerializeField] private GameObject grabbables;
-    [SerializeField] private AudioPlayer audio;
+    [SerializeField] private AudioPlayer _audio;
 
 
     private void Start()
@@ -27,7 +27,7 @@ public class BagelGestureDetector : MonoBehaviour
         firstBagel.SetActive(false);
         gameScene.SetActive(false);
         grabbables.SetActive(false);
-        audio.Play();
+        _audio.Play();
 
     }
 
@@ -132,6 +132,8 @@ public class BagelGestureDetector : MonoBehaviour
         firstBagel.SetActive(false);
         gameScene.SetActive(true);
         grabbables.SetActive(true);
+        _audio.SetAudio(2);
+        _audio.Play();
         // wait another frame
         yield return null;
         Debug.Log("Animation Done");
