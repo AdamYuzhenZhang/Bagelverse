@@ -4775,7 +4775,7 @@ MonoBehaviour:
   useRecommendedMSAALevel: 1
   _monoscopic: 0
   _sharpenType: 0
-  enableDynamicResolution: 1
+  enableDynamicResolution: 0
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
@@ -24551,6 +24551,7 @@ GameObject:
   - component: {fileID: 1362794510}
   - component: {fileID: 1362794509}
   - component: {fileID: 1362794511}
+  - component: {fileID: 1362794512}
   m_Layer: 0
   m_Name: MirrorController
   m_TagString: Untagged
@@ -24613,6 +24614,23 @@ MonoBehaviour:
   bagelDetected: 0
   firstBagel: {fileID: 983368093}
   gameScene: {fileID: 1282964738}
+  grabbables: {fileID: 450260038}
+  audio: {fileID: 1362794512}
+--- !u!114 &1362794512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362794508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 6b4d10c22204c1746a9c5629d9e5c3c8, type: 3}
+  audioClip2: {fileID: 0}
+  audioClip3: {fileID: 0}
 --- !u!1 &1362988329
 GameObject:
   m_ObjectHideFlags: 0
@@ -32209,6 +32227,7 @@ MonoBehaviour:
   _isWater: 0
   _isBaked: 0
   _isBoiled: 0
+  bakedBagel: {fileID: 0}
 --- !u!4 &1897687030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3183749884578473501, guid: d1e8aedba7afc614c933760f4e80e405,
@@ -34928,6 +34947,7 @@ MonoBehaviour:
   _isWater: 0
   _isBaked: 0
   _isBoiled: 0
+  bakedBagel: {fileID: 0}
 --- !u!64 &2090602863
 MeshCollider:
   m_ObjectHideFlags: 0

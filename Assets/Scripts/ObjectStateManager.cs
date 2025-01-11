@@ -9,6 +9,7 @@ public class ObjectStateManager : MonoBehaviour
     public bool _isBoiled;
     private bool locked;
     private bool soundPlayed;
+    public GameObject bakedBagel;
     private Renderer _renderer;
 
     // Start is called before the first frame update
@@ -71,7 +72,7 @@ public class ObjectStateManager : MonoBehaviour
         if (gameObject.name.ToLower().Contains("water")) // Visual change for boiled water.
         {
             _renderer.material.color = Color.white;
-            //gameObject.GetComponent<SphereJiggle>().StartJiggle();
+            gameObject.GetComponent<SphereJiggle>().StartJiggle();
             //gameObject.GetComponent<SteamGenerator>().SetSteamColor(Color.white);
         }
     }
@@ -97,7 +98,8 @@ public class ObjectStateManager : MonoBehaviour
         if (gameObject.name.ToLower().Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
         {
             // TODO: Baked Bagel Model
-            _renderer.material.color = Color.black;
+            gameObject.SetActive(false);
+            Instantiate(bakedBagel, transform);
             GetComponent<AudioPlayer>().SetAudio(3);
             GetComponent<AudioPlayer>().Play();
             locked = true;
