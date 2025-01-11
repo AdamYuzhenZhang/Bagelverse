@@ -130,14 +130,7 @@ public class BagelGestureDetector : MonoBehaviour
         Vector3 toPlayer = (Camera.main.transform.position - pos).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.up, toPlayer);
         firstBagel.transform.rotation = targetRotation;
-        Debug.Log("Bagel Created");
-
-        // Place grabbables at Pose height.
-        //grabbables.transform.position =  new Vector3(
-        //    grabbables.transform.position.x,  // Keep current x
-        //    rightThumb.y,                  // Set the desired y height
-        //    grabbables.transform.position.z   // Keep current z
-        //);
+        Debug.Log("Bagel Created");       
 
         // Play pose completion audio.
         _audio.SetAudio(2);
