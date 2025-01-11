@@ -819,6 +819,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 60235149}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &60235151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8946624265150106386, guid: c79823ae528885d4c8da03953abbfa0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 60235149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cd78837ca54594d83557e2d3a5dfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &60235152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8011945801237949438, guid: c79823ae528885d4c8da03953abbfa0f,
@@ -4629,17 +4641,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -4775,7 +4787,7 @@ MonoBehaviour:
   useRecommendedMSAALevel: 1
   _monoscopic: 0
   _sharpenType: 0
-  enableDynamicResolution: 1
+  enableDynamicResolution: 0
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
@@ -9050,7 +9062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 76bb9d61398e2a847ac48477cd0568a7, type: 3}
+  audioClip: {fileID: 0}
   audioClip2: {fileID: 0}
   audioClip3: {fileID: 0}
 --- !u!114 &637116928
@@ -10870,6 +10882,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 758502516}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &758502519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8946624265150106386, guid: c79823ae528885d4c8da03953abbfa0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 758502516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cd78837ca54594d83557e2d3a5dfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &758502520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5296709467858475474, guid: c79823ae528885d4c8da03953abbfa0f,
@@ -22327,17 +22351,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -24551,6 +24575,7 @@ GameObject:
   - component: {fileID: 1362794510}
   - component: {fileID: 1362794509}
   - component: {fileID: 1362794511}
+  - component: {fileID: 1362794512}
   m_Layer: 0
   m_Name: MirrorController
   m_TagString: Untagged
@@ -24613,6 +24638,23 @@ MonoBehaviour:
   bagelDetected: 0
   firstBagel: {fileID: 983368093}
   gameScene: {fileID: 1282964738}
+  grabbables: {fileID: 450260038}
+  _audio: {fileID: 1362794512}
+--- !u!114 &1362794512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362794508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 6b4d10c22204c1746a9c5629d9e5c3c8, type: 3}
+  audioClip2: {fileID: 8300000, guid: 346a237d74195534d92ec056ed9a8f2f, type: 3}
+  audioClip3: {fileID: 0}
 --- !u!1 &1362988329
 GameObject:
   m_ObjectHideFlags: 0
@@ -25709,6 +25751,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426884344}
   m_Mesh: {fileID: -4355411845722880063, guid: 98e927eb3cc36e24bab068964d98344d, type: 3}
+--- !u!114 &1426884350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426884344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc77a37a6354943428f29fda4738ded7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bagels:
+  - {fileID: 1850719892133028946}
+  - {fileID: 758502519}
+  - {fileID: 60235151}
+  rigTracker: {fileID: 0}
+  layer: 0
+  defaultParent: {fileID: 0}
+  leftTargetHand: {fileID: 0}
+  rightTargetHand: {fileID: 0}
+  isGrabbed: 0
+  grabbedByLeft: 0
+  grabbedByRight: 0
 --- !u!1 &1427851169
 GameObject:
   m_ObjectHideFlags: 0
@@ -26512,17 +26578,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -32041,6 +32107,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1426884347}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98e927eb3cc36e24bab068964d98344d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1426884350}
   m_SourcePrefab: {fileID: 100100000, guid: 98e927eb3cc36e24bab068964d98344d, type: 3}
 --- !u!1 &1883879091
 GameObject:
@@ -32209,6 +32279,7 @@ MonoBehaviour:
   _isWater: 0
   _isBaked: 0
   _isBoiled: 0
+  bakedBagel: {fileID: 0}
 --- !u!4 &1897687030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3183749884578473501, guid: d1e8aedba7afc614c933760f4e80e405,
@@ -32372,17 +32443,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -33673,17 +33744,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -34679,17 +34750,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bagels.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1850719892133028946}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758502519}
     - target: {fileID: 1869109739290768783, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: bagels.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 60235151}
     - target: {fileID: 3517257582814280034, guid: 0b66f4c6b8c4bfe46b044833b20723c5,
         type: 3}
       propertyPath: m_Name
@@ -34928,6 +34999,7 @@ MonoBehaviour:
   _isWater: 0
   _isBaked: 0
   _isBoiled: 0
+  bakedBagel: {fileID: 0}
 --- !u!64 &2090602863
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35442,6 +35514,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1850719892133028942}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1850719892133028946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8946624265150106386, guid: c79823ae528885d4c8da03953abbfa0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1850719892133028942}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cd78837ca54594d83557e2d3a5dfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

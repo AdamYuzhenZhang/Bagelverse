@@ -23,7 +23,7 @@ public class DishController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>();
-        if (collision.gameObject.name.ToLower().Contains("bagel") && state && state.isBaked() && !soundPlayed)
+        if (collision.gameObject.name.ToLower().Contains("realistic_bagel") && !soundPlayed)
         {
             collision.transform.SetParent(null);
             foreach (Transform child in confetti.transform)

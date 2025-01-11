@@ -17,13 +17,18 @@ public class BagelGestureDetector : MonoBehaviour
     
     [SerializeField] private GameObject firstBagel;
     [SerializeField] private GameObject gameScene;
-    
+    [SerializeField] private GameObject grabbables;
+    [SerializeField] private AudioPlayer _audio;
+
 
     private void Start()
     {
         // hide game scene and first bagel
         firstBagel.SetActive(false);
         gameScene.SetActive(false);
+        grabbables.SetActive(false);
+        _audio.Play();
+
     }
 
     // Comments are used for debugging joint positions! Not used anymore
@@ -126,6 +131,9 @@ public class BagelGestureDetector : MonoBehaviour
         // set bagel inactive, enable the scene
         firstBagel.SetActive(false);
         gameScene.SetActive(true);
+        grabbables.SetActive(true);
+        _audio.SetAudio(2);
+        _audio.Play();
         // wait another frame
         yield return null;
         Debug.Log("Animation Done");
