@@ -130,7 +130,8 @@ public class BagelGestureDetector : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.up, toPlayer);
         firstBagel.transform.rotation = targetRotation;
         Debug.Log("Bagel Created");
-        
+        _audio.SetAudio(2);
+        _audio.Play();
         // after a delay
         yield return new WaitForSeconds(3f);
             
@@ -138,7 +139,7 @@ public class BagelGestureDetector : MonoBehaviour
         firstBagel.SetActive(false);
         gameScene.SetActive(true);
         grabbables.SetActive(true);
-        _audio.SetAudio(2);
+        _audio.SetAudio(3);
         _audio.Play();
         // wait another frame
         yield return null;
