@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: a18b2b1fd5df81d41879d7e28fe678dc, type: 3}
-  audioClip2: {fileID: 8300000, guid: a18b2b1fd5df81d41879d7e28fe678dc, type: 3}
+  audioClip2: {fileID: 0}
 --- !u!1 &5110672327295393942
 GameObject:
   m_ObjectHideFlags: 0

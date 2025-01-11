@@ -13,27 +13,16 @@ public class MixingBowlController : MonoBehaviour
     void Start()
     {
         render = GetComponent<Renderer>();
+        activated = false;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        // Get the object's Renderer
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            // Set Gizmos color
-            Gizmos.color = Color.green;
-
-            // Draw the bounding box
-            Gizmos.DrawWireCube(renderer.bounds.center, renderer.bounds.size);
-        }
-    }
 
     void makeDough()
     {
         Vector3 newPosistion = transform.position;
         newPosistion.y += 1; // Place above mixing bowl + drops in w/ gravity.
         GameObject newDough = Instantiate(dough, newPosistion, Quaternion.identity);
+        GetComponent<AudioPlayer>().Play();
         //newDough.GetComponent<DoughController>().SetFlour(flour);
     }
 

@@ -28,6 +28,14 @@ public class WaterBottleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.layer == LayerMask.NameToLayer("water"))
+        {
+            inWater = true;
+        }
+        else
+        {
+            inWater = false;
+        }
         FillAndSpill();
         ChangeColor();
     }

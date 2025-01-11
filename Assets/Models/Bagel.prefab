@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5930350567071602156}
   - component: {fileID: 2173938478524080243}
   - component: {fileID: 8110226950866864228}
+  - component: {fileID: 2731404132153281086}
   m_Layer: 0
   m_Name: bagel_default
   m_TagString: Untagged
@@ -237,3 +238,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2731404132153281086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056342156962123134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192c7673c6026f74d858c600cce1913c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 4120269eea10ccc4caa4428b01cfdb14, type: 3}
+  audioClip2: {fileID: 8300000, guid: 9b63e6cc962625e4db740d570799f2f0, type: 3}
+  audioClip3: {fileID: 8300000, guid: b7bf746dce050154a9632c5ed7279382, type: 3}

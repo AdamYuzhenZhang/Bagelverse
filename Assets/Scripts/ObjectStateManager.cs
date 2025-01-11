@@ -7,6 +7,8 @@ public class ObjectStateManager : MonoBehaviour
     public bool _isWater;
     public bool _isBaked;
     public bool _isBoiled;
+    private bool locked;
+    private bool soundPlayed;
     private Renderer _renderer;
 
     // Start is called before the first frame update
@@ -16,13 +18,16 @@ public class ObjectStateManager : MonoBehaviour
         _isWater = gameObject.name.ToLower().Contains("water");
         _isBaked = false;
         _isBoiled = false;
+        locked = false;
+        soundPlayed = false;
         _renderer = GetComponent<Renderer>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (locked) return;
         ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>(); // Should Boil Bagels
-        bool shouldBoil = collision.gameObject.tag == "fire" && _isWater && !_isBoiled; // Should boil water
+        bool shouldBoil = (collision.gameObject.tag == "fire") && _isWater && !_isBoiled; // Should boil water
         if (shouldBoil || (state && state.isBoiled()))
         {
             Boil();
@@ -31,20 +36,24 @@ public class ObjectStateManager : MonoBehaviour
         {
             Bake();
         }
-        
-        //if (_isBoiled && !GetComponent<SteamGenerator>().IsSteamActive())
-        //{
-        //    //GetComponent<SteamGenerator>().SteamOn();
-        //}
 
     }
 
     private void Update()
     {
+        if (gameObject.layer == LayerMask.NameToLayer("fire") && _isWater && !_isBoiled)
+        {
+            Boil();
+        }
         if (transform.position.y < -5)
         {
             Destroy(gameObject);
         }
+        if (gameObject.name.ToLower().Contains("bagel") && !soundPlayed)
+        {
+            GetComponent<AudioPlayer>().Play();
+            soundPlayed = true;
+        } 
     }
 
 
@@ -56,6 +65,8 @@ public class ObjectStateManager : MonoBehaviour
         {
             // TODO: Raw Bagel Model
             _renderer.material.color = Color.gray;
+            GetComponent<AudioPlayer>().SetAudio(2);
+            GetComponent<AudioPlayer>().Play();
         }
         if (gameObject.name.ToLower().Contains("water")) // Visual change for boiled water.
         {
@@ -87,6 +98,10 @@ public class ObjectStateManager : MonoBehaviour
         {
             // TODO: Baked Bagel Model
             _renderer.material.color = Color.black;
+            GetComponent<AudioPlayer>().SetAudio(3);
+            GetComponent<AudioPlayer>().Play();
+            locked = true;
+
         }
         _isBaked = true;
     }

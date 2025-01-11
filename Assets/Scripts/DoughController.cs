@@ -16,8 +16,8 @@ public class DoughController : MonoBehaviour
 
     void DoughToBagel() 
     {
-       GameObject newBagel = Instantiate(bagelModel, transform.position, Quaternion.identity);
-       destroy = true;
+        GameObject newBagel = Instantiate(bagelModel, transform.position, Quaternion.identity);
+        destroy = true;
     }
 
     // Update is called once per frame
@@ -26,9 +26,6 @@ public class DoughController : MonoBehaviour
         AudioPlayer player = GetComponent<AudioPlayer>();
         if (!destroy && transform.position.y < .3) // Destroy dough after falling.
         {
-            //float randomNumber = Random.Range(0f, 1f);
-            //if (randomNumber < .4) player.SetAudio(0);
-            //else
             player.SetAudio(1);
             player.Play();
             destroy = true;
