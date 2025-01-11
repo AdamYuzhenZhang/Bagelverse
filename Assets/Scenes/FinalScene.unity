@@ -24652,7 +24652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 3d33f1e7a07dcd544ae42ac0af0b4f1a, type: 3}
-  audioClip2: {fileID: 8300000, guid: f31af2609ff4f304a8967a19067b91a2, type: 3}
+  audioClip2: {fileID: 8300000, guid: 7754cec62765fee49919607456c95536, type: 3}
   audioClip3: {fileID: 8300000, guid: 346a237d74195534d92ec056ed9a8f2f, type: 3}
 --- !u!1 &1362988329
 GameObject:
