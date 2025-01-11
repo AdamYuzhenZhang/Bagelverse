@@ -34,7 +34,7 @@ public class WaterBottleController : MonoBehaviour
         }
         else
         {
-            inWater = false;
+            //inWater = false;
         }
         FillAndSpill();
         ChangeColor();

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5477094157392155829}
   - component: {fileID: 4516203463568770280}
   m_Layer: 0
-  m_Name: waterBlob
+  m_Name: WaterBlob
   m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc8354b299b0784888b00fe7202104a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isFilled: 0
+  _isWater: 0
   _isBaked: 0
   _isBoiled: 0
 --- !u!54 &-5477094157392155829
@@ -145,7 +145,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

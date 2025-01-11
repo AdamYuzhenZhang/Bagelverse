@@ -6,11 +6,12 @@ public class DishController : MonoBehaviour
 {
     public GameObject confetti;
     public Transform parentTransform;
+    private bool soundPlayed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundPlayed = false;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class DishController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         ObjectStateManager state = collision.gameObject.GetComponent<ObjectStateManager>();
-        if (collision.gameObject.name.ToLower().Contains("bagel") && state && state.isBaked())
+        if (collision.gameObject.name.ToLower().Contains("bagel") && state && state.isBaked() && !soundPlayed)
         {
             collision.transform.SetParent(null);
             foreach (Transform child in confetti.transform)
@@ -35,6 +36,7 @@ public class DishController : MonoBehaviour
                 Instantiate(child.gameObject, offsetPosistion, Quaternion.identity);
             }
             GetComponent<AudioPlayer>().Play();
+            soundPlayed = true;
         }
     }
 }
