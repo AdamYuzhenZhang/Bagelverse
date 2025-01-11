@@ -12,7 +12,8 @@ public class WaterBottleController : MonoBehaviour
     public int spillRate;
     public int waterLimit;
 
-    private bool inWater;
+    private bool inWater; // For blob testing water fill.
+    private bool inWaterWorld; // For gameplay water world.
     private float waterAmount;
     private Renderer _renderer;
 
@@ -30,11 +31,11 @@ public class WaterBottleController : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("water"))
         {
-            inWater = true;
+            inWaterWorld = true;
         }
         else
         {
-            //inWater = false;
+            inWaterWorld = false;
         }
         FillAndSpill();
         ChangeColor();
@@ -116,7 +117,7 @@ public class WaterBottleController : MonoBehaviour
             }
             waterAmount -= spillRate;
         }
-        if (inWater && waterAmount < waterLimit)
+        if ((inWaterWorld || inWater) && waterAmount < waterLimit)
         { // Fill Water.
             waterAmount += fillRate;
         }
