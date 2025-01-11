@@ -35,7 +35,7 @@ public class DishController : MonoBehaviour
                 print("confetti: " + child.gameObject.name);
                 Instantiate(child.gameObject, offsetPosistion, Quaternion.identity);
             }
-            GetComponent<AudioPlayer>().Play();
+            //GetComponent<AudioPlayer>().Play();
             soundPlayed = true;
         }
     }

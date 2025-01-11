@@ -18,16 +18,18 @@ public class BagelGestureDetector : MonoBehaviour
     [SerializeField] private GameObject firstBagel;
     [SerializeField] private GameObject gameScene;
     [SerializeField] private GameObject grabbables;
-    [SerializeField] private AudioPlayer _audio;
+    private AudioPlayer _audio;
+    private bool playedAudio;
 
 
     private void Start()
     {
+        _audio = GetComponent<AudioPlayer>();
         // hide game scene and first bagel
         firstBagel.SetActive(false);
         gameScene.SetActive(false);
         grabbables.SetActive(false);
-        _audio.Play();
+        playedAudio = false;
 
     }
 
@@ -61,8 +63,12 @@ public class BagelGestureDetector : MonoBehaviour
     {
         // check if the index tips and thumb tips are close to each other
         // make sure the index and thumbs are not too close to each other, and index base are not too close
-
-        if (rigTracker.handBonesInitialized)
+        if (!playedAudio)
+        {
+            _audio.Play();
+            playedAudio=true;
+        }
+            if (rigTracker.handBonesInitialized)
         {
             Vector3 leftIndex = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexTip].position;
             Vector3 leftIndexBase = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexProximal].position;
