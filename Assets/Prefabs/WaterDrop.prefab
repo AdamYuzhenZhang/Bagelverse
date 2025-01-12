@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5477094157392155829}
   - component: {fileID: 999701236532345617}
   - component: {fileID: 777431662978726295}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: WaterDrop
   m_TagString: water
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   _isWater: 0
   _isBaked: 0
   _isBoiled: 0
+  bakedBagel: {fileID: 0}
 --- !u!54 &-5477094157392155829
 Rigidbody:
   m_ObjectHideFlags: 0

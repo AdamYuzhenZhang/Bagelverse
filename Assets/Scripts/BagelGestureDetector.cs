@@ -73,6 +73,7 @@ public class BagelGestureDetector : MonoBehaviour
         {
             Vector3 leftIndex = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexTip].position;
             Vector3 leftIndexBase = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_IndexProximal].position;
+            print(OVRSkeleton.BoneId.XRHand_IndexTip);
             Vector3 rightIndex = rigTracker.rightHandBones[OVRSkeleton.BoneId.XRHand_IndexTip].position;
             Vector3 rightIndexBase = rigTracker.rightHandBones[OVRSkeleton.BoneId.XRHand_IndexProximal].position;
             Vector3 leftThumb = rigTracker.leftHandBones[OVRSkeleton.BoneId.XRHand_ThumbTip].position;
@@ -140,7 +141,8 @@ public class BagelGestureDetector : MonoBehaviour
 
         // Move game scene to user's eye level
         float bagelCenterHeight = bagelPortal.GetComponent<Renderer>().bounds.size.y / 2;
-        gameScene.transform.Translate(new Vector3(0, Camera.main.transform.position.y - bagelCenterHeight, 0));
+        gameScene.transform.Translate(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - bagelCenterHeight, Camera.main.transform.position.z));
+        grabbables.transform.position = new Vector3(Camera.main.transform.position.x, grabbables.transform.position.y, Camera.main.transform.position.z);
 
 
 

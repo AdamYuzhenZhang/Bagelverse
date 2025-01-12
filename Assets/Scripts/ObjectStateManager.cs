@@ -9,8 +9,10 @@ public class ObjectStateManager : MonoBehaviour
     public bool _isBoiled;
     private bool locked;
     private bool soundPlayed;
-    public GameObject bakedBagel;
     private Renderer _renderer;
+    private Material OGMaterial;
+    public GameObject confetti;
+    public GameObject parentTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class ObjectStateManager : MonoBehaviour
         locked = false;
         soundPlayed = false;
         _renderer = GetComponent<Renderer>();
+        OGMaterial = new Material(_renderer.material);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,6 +45,18 @@ public class ObjectStateManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.name.ToLower().Contains("bagel") && !_isBoiled && !_isBaked)
+        {
+            GameObject[] waters = GameObject.FindGameObjectsWithTag("water");
+            foreach (GameObject water in waters)
+            {
+                if (_renderer.bounds.Intersects(water.GetComponent<Renderer>().bounds))
+                {
+                    Boil();
+                    break;
+                }
+            }
+        }
         if (gameObject.layer == LayerMask.NameToLayer("fire") && _isWater && !_isBoiled)
         {
             Boil();
@@ -52,7 +67,7 @@ public class ObjectStateManager : MonoBehaviour
         }
         if (gameObject.name.ToLower().Contains("bagel") && !soundPlayed)
         {
-            GetComponent<AudioPlayer>().Play();
+            if (GetComponent<AudioPlayer>()) GetComponent<AudioPlayer>().Play();
             soundPlayed = true;
         } 
     }
@@ -72,7 +87,7 @@ public class ObjectStateManager : MonoBehaviour
         if (gameObject.name.ToLower().Contains("water")) // Visual change for boiled water.
         {
             _renderer.material.color = Color.white;
-            gameObject.GetComponent<SphereJiggle>().StartJiggle();
+            //gameObject.GetComponent<SphereJiggle>().StartJiggle();
             //gameObject.GetComponent<SteamGenerator>().SetSteamColor(Color.white);
         }
     }
@@ -94,12 +109,24 @@ public class ObjectStateManager : MonoBehaviour
 
     public void Bake()
     {
+        if (locked) return;
         print(gameObject.name + " baking");
-        if (gameObject.name.ToLower().Contains("bagel") && isBoiled() && _renderer.material.color != Color.black)
+        if (gameObject.name.ToLower().Contains("bagel") && isBoiled())
         {
             // TODO: Baked Bagel Model
-            gameObject.SetActive(false);
-            Instantiate(bakedBagel, transform);
+            // gameObject.SetActive(false);
+            ////GameObject newbagel = Instantiate(bakedBagel, transform);
+            // newbagel.transform.SetParent(gameObject.transform.parent);
+            // newbagel.GetComponent<Rigidbody>().isKinematic = true;
+            _renderer.material = OGMaterial;
+            foreach (Transform child in confetti.transform)
+            {
+                Vector3 offsetPosistion = transform.position;
+                offsetPosistion.x += Random.Range(0f, .2f);
+                offsetPosistion.y += Random.Range(.2f, .4f);
+                offsetPosistion.z += Random.Range(0f, .2f);
+                Instantiate(child.gameObject, offsetPosistion, Quaternion.identity);
+            }
             GetComponent<AudioPlayer>().SetAudio(3);
             GetComponent<AudioPlayer>().Play();
             locked = true;

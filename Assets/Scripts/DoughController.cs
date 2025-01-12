@@ -16,7 +16,9 @@ public class DoughController : MonoBehaviour
 
     void DoughToBagel() 
     {
-        GameObject newBagel = Instantiate(bagelModel, transform.position, Quaternion.identity);
+        GameObject newBagel = Instantiate(bagelModel, transform.position, bagelModel.transform.rotation);
+        newBagel.GetComponent<Renderer>().material.color = new Color(0.8f, 0.5f, 0.2f, 1f);
+
         destroy = true;
     }
 

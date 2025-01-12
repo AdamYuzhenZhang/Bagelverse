@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oculus.Interaction;
 using UnityEngine;
 
 public class BakingTrayController : MonoBehaviour
 {
 
-    private Transform bagelTransform;
+    private GameObject bagel;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bagel = null;
     }
 
     // Update is called once per frame
@@ -17,7 +18,12 @@ public class BakingTrayController : MonoBehaviour
     {
         if (IsSpilling())
         {
-            bagelTransform.SetParent(null);
+            bagel.transform.SetParent(null);
+            bagel.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        if (gameObject.layer == LayerMask.NameToLayer("fire") && bagel)
+        {
+            bagel.GetComponent<ObjectStateManager>().Bake();
         }
     }
 
@@ -26,7 +32,8 @@ public class BakingTrayController : MonoBehaviour
         if (collision.gameObject.name.ToLower().Contains("bagel"))
         {
             collision.gameObject.transform.SetParent(gameObject.transform);
-            bagelTransform = collision.gameObject.transform;
+            bagel = collision.gameObject;
+            collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 
